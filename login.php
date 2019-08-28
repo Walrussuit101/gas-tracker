@@ -38,6 +38,9 @@ include_once("headers/header.php");
 </html>
 
 <?php
+	//TODO:
+	//Verify email
+	
 	if(isset($_POST['login'])){
 		$currentUser = new User();
 		$currentUserController = new UserController($conn, $currentUser);
