@@ -48,8 +48,8 @@ include_once("headers/header.php");
 		if($currentUserController->logIn($conn, $_POST['email'], $_POST['password'])){
 			$_SESSION['currentUser'] = $currentUser;
 			$_SESSION['currentUserController'] = $currentUserController;
-			
-			header("location: index");
+						
+			header("location: ../gas-tracker");
 			exit();
 			
 		}else{
