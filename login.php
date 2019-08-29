@@ -2,7 +2,6 @@
 include_once("headers/header.php");
 ?>
 		
-
 <html>
 	<head>
 		<meta name=”viewport” content=”width=device-width, initial-scale=1″>
@@ -25,9 +24,10 @@ include_once("headers/header.php");
 					<div class="col">			
 						<div id="logInFormDiv">			
 							<form action="login" method="post" autocomplete="off">
-								<input class="logInElement" type="text" name="email" placeholder="Email" autocorrect=off />
-								<input class="logInElement" type="password" name="password" placeholder="Password"/>
+								<input class="logInElement" type="text" name="email" placeholder="Email" autocorrect=off required="required" />
+								<input class="logInElement" type="password" name="password" placeholder="Password" required="required"/>
 								<button class="btn btn-success logInElement" type="submit" name="login">Log In</button>
+								<script>document.getElementsByName("email")[0].focus();</script>
 							</form>
 						</div>
 					</div>
@@ -43,11 +43,11 @@ include_once("headers/header.php");
 	
 	if(isset($_POST['login'])){
 		$currentUser = new User();
-		$currentUserController = new UserController($conn, $currentUser);
+		$currentUserController = new UserController($currentUser);
 		
-		if($currentUserController->logIn($_POST['email'], $_POST['password'])){
+		if($currentUserController->logIn($conn, $_POST['email'], $_POST['password'])){
 			$_SESSION['currentUser'] = $currentUser;
-						
+			$_SESSION['currentUserController'] = $currentUserController;
 			
 			header("location: index");
 			exit();

@@ -1,4 +1,55 @@
+body{
+	background-color: green;
+}
+
 #content{
 	position: absolute;
-	left: 50%;
+	width: 100%;
+}
+
+.row{
+	margin-top: 200px;
+}
+
+.col{
+	text-align: center;
+}
+
+#mileageFormDiv{
+	position: absolute;
+	left: 5%;
+}
+
+#mileageFormDiv input{
+	height: 150px;
+	width: 650px;
+}
+
+#logout{
+	margin-top: 300px;
+}
+
+#mileageFormDiv button{
+	height: 100px;
+	width: 400px;
+	margin-left: 18%;
+}
+
+#mileageFormDiv label{
+	font-size: 45pt;
+}
+
+.milageFormElement{
+	display: block;
+	margin-top: 20px;
+	font-size: 40pt;
+}
+
+input[type='number'] {
+    -moz-appearance:textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
 }

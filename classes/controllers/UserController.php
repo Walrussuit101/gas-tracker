@@ -1,15 +1,13 @@
 <?php
 class UserController{
-	private $conn;
 	private $User;
 	
-	function __construct($connSet, $UserSet){
+	function __construct($UserSet){
 		$this->User = $UserSet;
-		$this->conn = $connSet;
 	}
 	
-	function logIn($email, $password){
-		$result = $this->conn->prepare("SELECT * FROM users WHERE email = '".$email."'");
+	function logIn($conn, $email, $password){
+		$result = $conn->prepare("SELECT * FROM users WHERE email = '".$email."'");
 		
 		//TODO:
 		//Implement a prepared statement
@@ -20,6 +18,7 @@ class UserController{
 			if(password_verify($password, $row["password"])){
 				$this->User->setEmail($row["email"]);
 				$this->User->setId($row["id"]);
+				$this->User->setInTrip($row["intrip"]);
 				
 				return true;
 			}else{
@@ -28,6 +27,11 @@ class UserController{
 		}
 		
 		return false;
+	}
+	
+	function logout(){
+		unset($User);
+		unset($_SESSION['currentUser']);
 	}
 }
 ?>

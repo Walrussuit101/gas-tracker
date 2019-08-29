@@ -4,9 +4,6 @@ include_once("headers/header.php");
 if(!isset($_SESSION['currentUser'])){
 	header("location: login");
 	exit();
-}else{
-	echo $_SESSION['currentUser']->getEmail();
-	echo $_SESSION['currentUser']->getId();
 }
 ?>
 <html>
@@ -26,12 +23,38 @@ if(!isset($_SESSION['currentUser'])){
 	<body>
 		<div id="content">
 			<div class="container">
-				<div class="row justify-content-center">
-					<div class="col-sm">
-						<p>TEST</p>
+				<div class="row">
+					<div class="col">
+						<div id="mileageFormDiv">
+							<label id="inputType"><?php echo displayStatus($_SESSION['currentUser']->inTrip());?></label>
+							<form action="index" method="post">
+								<input class="milageFormElement" type="number" placeholder="Mileage" name="mileage" required="required"/>
+								<button class="btn btn-success milageFormElement" type="submit" name="submitMilage">Submit</button>
+								<button class="btn btn-danger milageFormElement" id="logout" type="submit" name="logOut" formnovalidate>Log Out</button>
+							</form>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</body>
 </html>
+
+<?php
+	if(isset($_POST['logOut'])){
+		$_SESSION['currentUserController']->logout();
+		unset($_SESSION['currentUserController']);
+		
+		header("location: login");
+		exit();
+	}
+
+	function displayStatus($intrip){
+		if($intrip == 1){
+			return "Post-Trip Mileage:";
+		}else{
+			return "Pre-Trip Mileage:";
+		}
+	}
+
+?>
