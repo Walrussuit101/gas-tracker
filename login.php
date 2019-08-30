@@ -48,6 +48,8 @@ include_once("headers/header.php");
 		if($currentUserController->logIn($conn, $_POST['email'], $_POST['password'])){
 			$_SESSION['currentUser'] = $currentUser;
 			$_SESSION['currentUserController'] = $currentUserController;
+			
+			$_SESSION['currentUserController']->buildUserTripsTable($conn);
 						
 			header("location: ../gas-tracker");
 			exit();
