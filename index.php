@@ -29,7 +29,7 @@ if(!isset($_SESSION['currentUser'])){
 							<label id="inputType"><?php echo displayStatus($_SESSION['currentUser']->inTrip());?></label>
 							<form action="index" method="post">
 								<input class="milageFormElement" type="number" placeholder="Mileage" name="mileage" required="required"/>
-								<button class="btn btn-success milageFormElement" type="submit" name="submitMilage">Submit</button>
+								<button class="btn btn-success milageFormElement" type="submit" name="submitMileage">Submit</button>
 								<button class="btn btn-danger milageFormElement" id="logout" type="submit" name="logOut" formnovalidate>Log Out</button>
 							</form>
 						</div>
@@ -47,6 +47,15 @@ if(!isset($_SESSION['currentUser'])){
 		
 		header("location: login");
 		exit();
+	}else if(isset($_POST['submitMileage'])){		
+		if($_SESSION['currentUser']->inTrip() == 1){
+			$_SESSION['currentUserController']->saveEndMileageAndDistance($conn, $_POST['mileage']);
+			$_SESSION['currentUserController']->endTrip($conn);
+			header("Refresh: 0");
+		}else{
+			$_SESSION['currentUserController']->saveStartMileage($conn, $_POST['mileage'], $date);
+			header("Refresh: 0");
+		}
 	}
 
 	function displayStatus($intrip){
@@ -56,5 +65,4 @@ if(!isset($_SESSION['currentUser'])){
 			return "Pre-Trip Mileage:";
 		}
 	}
-
 ?>

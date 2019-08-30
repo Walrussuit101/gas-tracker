@@ -3,6 +3,7 @@ class User{
 	private $id;
 	private $email;
 	private $intrip;
+	private $currenttripid;
 		
 	public function getEmail(){
 		return $this->email;
@@ -26,6 +27,14 @@ class User{
 	
 	public function inTrip(){
 		return $this->intrip;
+	}
+	
+	public function setCurrentTripId($currenttripidSet){
+		$this->currenttripid = $currenttripidSet;
+	}
+	
+	public function getCurrentTripId(){
+		return $this->currenttripid;
 	}
 }
 ?>
