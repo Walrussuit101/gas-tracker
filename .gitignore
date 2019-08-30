@@ -1,2 +1,3 @@
 headers/header.php
 .htaccess
+libs/*
