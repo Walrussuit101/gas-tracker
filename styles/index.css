@@ -7,11 +7,27 @@ body{
 	width: 100%;
 }
 
-.row{
+
+.notification{
+	display: none;
+	position: absolute;
+	z-index: 100;
+	background-color: purple;
+	width: 700px;
+	height: 400px;
+	margin-top: 100px;
+}
+
+.notification p{
+	font-size: 60pt;
+	text-align: center;
+}
+
+#mainrow{
 	margin-top: 200px;
 }
 
-.col{
+#maincol{
 	text-align: center;
 }
 

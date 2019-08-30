@@ -90,6 +90,8 @@ class UserController{
 		$result->execute();
 		
 		$this->refresh($conn);
+		
+		return($totaldistance);
 	}
 	
 	function endTrip($conn){
