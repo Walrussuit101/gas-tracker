@@ -1,3 +1,4 @@
 headers/header.php
 .htaccess
+.htaccess_ignore
 libs/*
